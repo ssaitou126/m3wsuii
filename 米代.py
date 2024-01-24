@@ -4,7 +4,7 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import datetime
-import yaml
+import json
 
 # 年月日時設定
 now = datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=9))).replace(
@@ -26,7 +26,7 @@ difhr = int((mdngt - now).total_seconds() / 60 / 60)
 
 # グラフ描画関数
 def grfdrw(url):
-    rivdict = yaml.safe_load(open("urls.yaml", "r"))
+    rivdict = json.load(open("urls.json", "r"))
     urllast = (
         lambda x: rivdict[x].replace("datelabel", lastday).replace("yearlabel", nowyear)
     )
