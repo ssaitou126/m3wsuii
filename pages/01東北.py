@@ -27,15 +27,8 @@ difhr = int((mdngt - now).total_seconds() / 60 / 60)
 # グラフ描画関数
 def grfdrw(url):
     rivdict = json.load(open("urls.json", "r"))
-    urllast = (
-        lambda x: rivdict[x].replace("datelabel", lastday).replace("yearlabel", nowyear)
-    )
-    urlnow = (
-        lambda x: rivdict[x].replace("datelabel", nowday).replace("yearlabel", nowyear)
-    )
-
-    urll = urllast(url)
-    urln = urlnow(url)
+    urll = rivdict[url].replace("datelabel", lastday).replace("yearlabel", nowyear)
+    urln = rivdict[url].replace("datelabel", nowday).replace("yearlabel", nowyear)    
     dfls = pd.read_html(urll)
     dfns = pd.read_html(urln)
     dfll = dfls[1].iloc[2:-1, :]
